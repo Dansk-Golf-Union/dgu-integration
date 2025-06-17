@@ -3,13 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
-...
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches:
       - main  # eller 'master' – alt efter hvad dit default branch hedder
 
 jobs:
