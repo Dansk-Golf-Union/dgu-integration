@@ -28,3 +28,12 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Juster logoets størrelse i navbaren */
+.navbar__logo img {
+  max-height: 30px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  margin-top: 4px;
+}

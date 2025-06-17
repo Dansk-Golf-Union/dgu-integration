@@ -1,0 +1,446 @@
+---
+id: integration-guide
+title: Integration Guide for Scoring Apps
+sidebar_label: Scoring Apps (API)
+---
+# Introduction
+
+The Union Database holds information related to golf clubs and their members.
+
+Continuously the Union Database also holds information about scores of members. Scoring app has access through the API via an API account.
+
+## Document Audience
+
+This document is for scoring apps who must post scores into the Union Database.
+
+## Definitions
+
+There are a few definitions worth knowing about.
+
+**Club**  
+A golf club has an official name, a short name, a number, and possibly an address.
+
+**Course**  
+A course is the actual course created by the club. A course has one or more tees with 9 or 18 holes.
+
+**Member**  
+A member is a person with one or more memberships. This means that the same person can have two or more memberships of different golf clubs.
+
+**Scorecard**  
+A scorecard holds information about the player, the course, the marker, and the actual score.
+
+## Identifiers
+
+All objects in the database have identifiers in the form of a GUID (Globally Unique Identifier).
+
+The Scorecard object contains an External ID. This ID is supplied by the scoring app to reference a scorecard in the union database. This makes it simpler to modify a scorecard, because the scoring apps does not need to register the GUID locally.
+
+## Data format
+
+The data format used for exchanging data through the API is JSON.
+
+## Authentication
+
+Access to the API is done through **Basic Authentication**. Each vendor will be given an API account with a username and password. Each account is authorized to use a certain set of API resources.
+
+## API Set
+
+All requests to the API must include an **API Set** in the URL. The API Set is equal to the **username** of the account unless otherwise instructed.
+
+## Base URL
+
+The base urls for DGU is 
+- dgubasen.api.union.golfbox.io
+- test-dgubasen.api.union.golfbox.io
+
+## Request headers
+
+All requests to the API must include the following headers:
+
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic <username:password>
+Token: <OAuth token>
+```
+
+The `username:password` combination must be **Base64 encoded**.
+
+## Error Handling
+
+If a request fails, the API responds with standard HTTP error codes and messages.
+
+Example:
+
+```http
+HTTP/1.1 500 Internal Server Error
+```
+
+## Clubs
+
+Clubs holds basic information of a given club. Focus point on Clubs is the ID which must be used to lookup courses (See section about Courses)
+
+Here is a list of the club info.
+
+| Name           | Type     | Nullable | Remarks                      |
+|----------------|----------|----------|------------------------------|
+| ID             | GUID     | No       | Database ID                  |
+| UnionNumber    | Integer  | No       | Official club number         |
+| Name           | String   | No       | Official club name           |
+| ShortName      | String   | No       | Three letter short name      |
+| AddressLine1   | String   | Yes      | Street name                  |
+| AddressLine2   | String   | Yes      | Secondary address info, C/O  |
+| StreetNumber   | String   | Yes      | Street number                |
+| Floor          | String   | Yes      | Floor of build               |
+| Side           | String   | Yes      | Side on floor                |
+| ZipCode        | String   | Yes      | Zip code                     |
+| City           | String   | Yes      | City name                    |
+| PrimaryPhone   | String   | Yes      | Main telephone number        |
+| PrimaryEmail   | String   | Yes      | Main e-mail address          |
+| Homepage       | String   | Yes      | Web site address             |
+
+### How do I look up club info?
+You can get a list of all clubs by making the following API request.
+
+**Example Request**
+
+```http
+GET https://<base_url>/<apiset>/Clubs
+```
+
+You can get info about a specific club by making the following API request.
+
+**Example Request**
+
+```http
+GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6
+```
+
+**Example Response:**
+
+```json
+{
+   "ID": "ADABD19C-D1EA-45CE-AF2B-8F5407D000A6",
+   "Name": "Lübker Golf Klub",
+   "UnionNumber": 202,
+   "ShortName": "",
+   "AddressLine1": "Trent Jones Allé",
+   "AddressLine2": null,
+   "StreetNumber": "3",
+   "Floor": null,
+   "Side": null,
+   "ZipCode": "8581",
+   "City": "Nimtofte",
+   "PrimaryPhone": "38408050",
+   "PrimaryEmail": "info@lubker.com",
+   "Homepage": "www.lubker.com"
+}
+```
+
+## Courses
+
+Courses holds basic information such as name, number of holes e.g. Courses also holds tees, there could be multiple tees with different names and assigned to different genders. Tees contains all the holes with pars, indexes and e.g.
+
+Here is a list of the relevant course info.
+
+| Name            | Type    | Nullable | Remarks                                                                 |
+|-----------------|---------|----------|-------------------------------------------------------------------------|
+| ID              | GUID    | No       | Database ID                                                             |
+| ClubID          | GUID    | No       | Reference to CLUB                                                       |
+| Name            | String  | No       | Official course name                                                    |
+| NumberOfHoles   | Int     | No       | Typically 9 or 18                                                       |
+| ActivationDate  | String  | No       | The date where the course is valid from (Format: yyyymmddThhnnss)       |
+| IsActive        | Boolean | No       | Indicates if a club course is currently active                          |
+| Tees            | [List]  | No       |                                                                         |
+| └─ Name         | String  | No       | Name of tee                                                             |
+| └─ Gender       | Int     | No       | 1 = Female, 2 = Male                                                    |
+| └─ TotalLength  | Int     | No       | Sum of hole lengths                                                     |
+| └─ CourseRating | Decimal | No       | Official course rating value                                            |
+| └─ SlopeRating  | Int     | No       | Official slope rating value                                             |
+| └─ IsNineHole   | Boolean | No       | Indicates if this tee is nine holes only                                |
+| └─ Holes        | [List]  | No       |                                                                         |
+|    └─ Name      | String  | Yes      | Alternative hole number/hole name                                       |
+|    └─ Number    | Int     | No       | Official hole number                                                    |
+|    └─ Par       | Int     | No       | Official par of hole                                                    |
+|    └─ Index     | Int     | Yes/No   | Hole index                                                              |
+|    └─ Length    | Int     | No       | Official length of hole                                                 |
+|    └─ IdealTime | Int     | Yes      | Ideal number of minutes for playing the hole                            |
+
+
+**Note:** Some properties in the response are not described, because they are not relevant for scoring apps.
+
+### How do I look up club courses?
+
+You can get a list of club courses in a club by making the following API request.
+The Club Database ID must be included in the URL.
+
+**Example Request**
+
+```
+GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Courses
+```
+
+You can get a single club course by making the following API request.
+A club course can be referenced by a Club ID and Course ID
+
+**Example Request**
+
+```
+GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Courses
+/75953104-2B6C-42E0-BAE1-963578F9C02B
+```
+
+**Example Response:**
+
+```json
+{
+"ID": "75953104-2B6C-42E0-BAE1-963578F9C02B",
+"ClubID": "ADABD19C-D1EA-45CE-AF2B-8F5407D000A6",
+"Name": "Lübker Sand Course",
+"NumberOfHoles": 18,
+"ActivationDate": "20190909T000000",
+"IsActive": true,
+"RatedCourse": "DGU - Lübker Forest/Sand Course",
+"IsHcpQualifying": true,
+"IsVisible": true
+"Tees": [
+{
+"ID": "2750ED47-7EAA-4BBA-A6FC-30FCABAE968A",
+"LastUpdateDate": "00010101T000000",
+"Name": "Gul",
+"Gender": 1,
+"TotalLength": 5536,
+"CourseRating": "718000",
+"BogeyRating": "974000",
+"SlopeRating": 138,
+"RatedOn": "00010101T000000",
+"RatedBy": null,
+"IsNineHole": false,
+"NextScheduledRating": "00010101T000000",
+"Holes": [
+{
+"ID": "3F8ED725-D53D-4528-B9FA-9AA95A57DF89",
+"LastUpdateDate": "00010101T000000",
+"Name": "",
+"Number": 1,
+"Par": 5,
+"Index": 4,
+"Length": 497,
+"IdealTime": 20
+}
+...
+]
+},
+...
+]
+}
+```
+
+## Members
+
+Every person in the database has an ID called LifeTimeID. The format of this number is [xxxxxx-xxx], where
+the first 6 are based on the persons birthdate, and the last 3 are an increment integer grouped by
+birthdate.
+
+A person can be a member of a golf club. The relationship between a person and club is a membership. A
+person can also be a member of more than one club, thus having multiple memberships.
+Being a member in a golf club means that you get a member number, which is unique within the club. This
+member number has nothing to do with the lifetime ID. If we put together the official club number and the
+member number, we have a nationally unique reference for a member. This combination is called the
+‘union ID’
+
+Member info can be looked up by a lifetime ID or by union ID.
+Member info consist of both personal info and membership info.
+When a member is looked up the complete information including the person and all memberships is returned.
+
+Here is a list of the member info.
+
+
+| Name             | Type    | Nullable | Remarks                                                                 |
+|------------------|---------|----------|-------------------------------------------------------------------------|
+| ID               | GUID    | No       | Database ID                                                             |
+| LifeTimeID       | String  | No       | 12-digit number                                                         |
+| FirstName        | String  | No       |                                                                         |
+| LastName         | String  | No       |                                                                         |
+| Gender           | String  | No       | Male or Female                                                          |
+| BirthDate        | String  | No       | The official birth date (Format: yyyymmddThhnnss)                       |
+| RightToPlay      | Boolean | No       | Indicates if the player has a national playing right                    |
+| Status           | Int     | No       | 1 = Amateur, 2 = Professional                                           |
+| Handicap         | Decimal | No       | Official handicap index                                                 |
+| HandicapStatus   | Boolean | No       | 1 = Active, (others to be decided depending on new WHS)                 |
+| Memberships      | [List]  |          |                                                                         |
+| └─ ID            | GUID    | No       | Database ID                                                             |
+| └─ IsHomeClub     | Boolean | No       | Indicates if the membership is the home club membership                |
+| └─ LocalRightToPlay | Boolean | No   | Indicates if the player has a local playing right                        |
+| └─ Type          | Int     | No       | 1 = Active, 7 = Former                                                  |
+| └─ UnionID       | String  | No       | Combination of the Club Number and the Member Number, e.g. 88-534       |
+| └─ Club          | Object  |          | Club info of the membership club                                        |
+|    └─ ID         | GUID    | No       | Database ID of the club                                                 |
+|    └─ Name       | String  | No       | Official name of the club                                               |
+|    └─ ShortName  | String  | No       | Short version of the club name                                          |
+|    └─ UnionNumber| Int     | No       | Official club number                                                    |
+| └─ HomeClub      | Object  |          | Club info about the home club (same as membership club if IsHomeClub)   |
+|    └─ ID         | GUID    | No       | Database ID of the club                                                 |
+|    └─ Name       | String  | No       | Official name of the club                                               |
+|    └─ ShortName  | String  | No       | Short version of the club name                                          |
+|    └─ UnionNumber| Int     | No       | Official club number                                                    |
+
+
+### How do I look up member info?
+
+You can get info about a specific member in any club by making the following API request.
+You can refer to the member by
+• lifetimeID
+• unionID
+
+**Example Request**
+
+```
+GET https://<base_url>/<apiset>/Clubs/Golfer?lifetimeID=300191-001?unionID=202-331
+```
+
+**Example Response:**
+
+```json
+{
+"ID": "86A8D54D-4B90-4145-9583-0B1CD2766869",
+"LifeTimeID": "300191-001",
+"FirstName": "Nikolaj Bille",
+"LastName": "Nielsen",
+"Gender": "Male",
+"BirthDate": "19910130T000000",
+"RightToPlay": true,
+"Status": 1,
+"PlayerStatus": 1,
+"Handicap": "340000",
+"HandicapStatus": 1,
+"Memberships": [
+{
+"ID": "ADF707B0-AA02-408E-9687-B41AEA0DFDE7",
+"IsHomeClub": true,
+"LocalRightToPlay": true,
+"Type": 1,
+"UnionID": "202-331",
+"HomeClub": {
+"ID": "ADABD19C-D1EA-45CE-AF2B-8F5407D000A6",
+"Name": "Lübker Golf Klub",
+"ShortName": "",
+"UnionNumber": 202
+},
+"Club": {
+"ID": "ADABD19C-D1EA-45CE-AF2B-8F5407D000A6",
+"Name": "Lübker Golf Klub",
+"ShortName": "",
+"UnionNumber": 202
+}
+}
+]
+}
+```
+
+## Scores
+
+All the scores that are posted to the database goes into a module called the “Scorecard Exchange”.
+Scorecards will then later be picked up and processed, which ultimately would trigger a handicap
+adjustment.
+
+Here is a list of the scorecard info.
+
+| Name                  | Type     | Nullable | Remarks                                                                                      |
+|-----------------------|----------|----------|----------------------------------------------------------------------------------------------|
+| ID                    | GUID     | No       | Database ID                                                                                  |
+| CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
+| AccountID             | GUID     | No       | ID of the API account (internal)                                                             |
+| ExternalID            | String   | No       | The external ID of the scorecard                                                             |
+| HCP                   | Decimal  | No       | The exact handicap the round was played off                                                  |
+| PHCP                  | Integer  | No       | The playing handicap the round was played off                                                |
+| Course                | Object   | No       |                                                                                              |
+| └─ CourseID           | GUID     | Yes      | Reference to Course Database ID                                                              |
+| └─ ClubID             | GUID     | Yes      | Reference to Club Database ID                                                                |
+| └─ Name               | String   | No       | Name of the course                                                                           |
+| └─ Country            | String   | No       | ISO2 Country Code                                                                            |
+| └─ TeeID              | GUID     | Yes      | Reference to Tee Database ID                                                                 |
+| └─ TeeName            | String   | No       | Name of the tee                                                                              |
+| └─ TeePar             | Integer  | No       | Total par of the holes                                                                       |
+| └─ TeeRating          | Integer  | No       | Official course rating value                                                                 |
+| └─ TeeSlope           | Decimal  | No       | Official slope rating value                                                                  |
+| └─ Holes              | [List]   | No       |                                                                                              |
+|    └─ Number          | Int      | No       | Official hole number                                                                         |
+|    └─ Par             | Int      | No       | Official par of hole                                                                         |
+|    └─ Index           | Int      | No       | Hole index                                                                                   |
+|    └─ Length          | Int      | No       | Official length of hole                                                                      |
+|    └─ ExtraStrokes    | Int      | No       | Extra Strokes on hole                                                                        |
+| Round                 | Object   | No       |                                                                                              |
+| └─ HolesPlayed        | Integer  | No       | Number of holes played                                                                       |
+| └─ RoundType          | Integer  | No       | 1 = General Play, 2 = Tournament                                                             |
+| └─ StartTime          | DateTime | No       | The date and time the round was played (Format: yyyymmddThhnnss)                             |
+| └─ TournamentName     | String   | Yes      | Name of tournament played (if roundtype = 2)                                                 |
+| └─ TournamentRoundNumber | Integer | Yes    | Number of tournament round played (if roundtype = 2)                                         |
+| Result                | Object   | No       |                                                                                              |
+| └─ Points             | [List]   | No       | Comma-separated list with stableford points per hole                                         |
+| └─ Strokes            | [List]   | No       | Comma-separated list with strokes per hole (0 if ball was picked up)                         |
+| └─ TotalPoints        | Integer  | No       | Total number of stableford points achieved                                                   |
+| └─ TotalStrokes       | Integer  | No       | Total number of strokes used (0 if ball was picked up on any hole)                           |
+| └─ NetDoubleBogeyGross| Integer  | Yes      | Total Adjusted Gross Score (total of net score limited by Net Double Bogey on each hole)     |
+| └─ IsQualifying       | Boolean  | No       | Determines if the score is acceptable for handicapping purposes                              |
+| Player                | Object   | No       |                                                                                              |
+| └─ FullName           | String   | No       | The full name of the player                                                                  |
+| └─ HomeClubName       | String   | No       | Name of the player’s home club                                                               |
+| └─ HomeClubCountry    | String   | No       | Country of the player’s home club                                                            |
+| └─ LifeTimeID         | String   | No       | Lifetime ID of the player                                                                    |
+| └─ UnionID            | String   | No       | Union ID of the player                                                                       |
+| Marker                | Object   | No       |                                                                                              |
+| └─ FullName           | String   | No       | The full name of the marker                                                                  |
+| └─ HomeClubName       | String   | No       | Name of the marker’s home club                                                               |
+| └─ LifeTimeID         | String   | Yes      | Lifetime ID of the marker if applicable                                                      |
+| └─ UnionID            | String   | Yes      | Union ID of the marker if applicable                                                         |
+
+
+
+## How do I create scorecards?
+
+Scorecards must all be sent to the Scorecard Exchange module. You do this by making the following API
+request.
+
+Example JSON payload:
+
+```json
+{
+  "CreateDateTime": "20190624T000000",
+  "ExternalID": "f53208d1...",
+  "HCP": "340000",
+  "PHCP": 41,
+  "Course": {
+    "ClubID": "...",
+    "Name": "Lübker Sand Course",
+    "Country": "DK",
+    "TeeName": "Gul",
+    "TeePar": 72,
+    "TeeRating": "718000",
+    "TeeSlope": "1380000"
+  },
+  "Round": {
+    "HolesPlayed": 18,
+    "RoundType": 1,
+    "StartTime": "20190623T000000"
+  },
+  "Result": {
+    "Points": [4, 0, 3],
+    "Strokes": [6, 7, 5],
+    "TotalPoints": 48,
+    "TotalStrokes": 101,
+    "NetDoubleBogeyGross": 149,
+    "IsQualifying": true
+  },
+  "Player": {
+    "FullName": "Nikolaj Bille Nielsen",
+    "LifeTimeID": "300191-001",
+    "UnionID": "202-331"
+  },
+  "Marker": {
+    "FullName": "Christian Rygaard",
+    "LifeTimeID": "070692-002",
+    "UnionID": "202-326"
+  }
+}
+```
