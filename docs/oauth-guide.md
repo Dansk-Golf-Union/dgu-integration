@@ -1,5 +1,5 @@
 
-OAuth Guide.
+OAuth Guide
 =======================
 
 Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:
