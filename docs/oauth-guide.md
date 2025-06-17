@@ -40,7 +40,7 @@ Generate like this:
 
 Code verifier: '''openssl rand -base64 32'''
 Code challenge (S256): '''echo -n "your_code_verifier" | openssl dgst -sha256 -binary | openssl base64 | tr -d '=' | tr '/+' '_-''''
-Or use a tool like: https://oauth.tools/pkce
+Or use a tool like: https://tonyxu-io.github.io/pkce-generator/
 
 
 • code_challenge_method: Used for PKCE protection. In almost all cases, this value is S256.
