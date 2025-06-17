@@ -28,11 +28,11 @@ The uri for this call is `{domain}/connect/authorize`. Below you will find all o
 parameters for this request. A full list of all available parameters can be found here:
 https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 
-• client_id: Identifier of the client.
-• scope: One or more registered scopes.
-• response_type: Determines the authorization processing flow. When using the Authorization Code Flow, this value is code.
-• redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.
-• code_challenge: Used for PKCE protection, see OAuth’s official documentation here:
+- client_id: Identifier of the client.
+- scope: One or more registered scopes.
+- response_type: Determines the authorization processing flow. When using the Authorization Code Flow, this value is code.
+- redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.
+- code_challenge: Used for PKCE protection, see OAuth’s official documentation here:
 https://www.oauth.com/oauth2-servers/pkce/authorization-request
 
 PKCE secures OAuth by sending a hashed code challenge during auth and later verifying it with the original code verifier.
@@ -43,8 +43,8 @@ Code challenge (S256): '''echo -n "your_code_verifier" | openssl dgst -sha256 -b
 Or use a tool like: https://tonyxu-io.github.io/pkce-generator/
 
 
-• code_challenge_method: Used for PKCE protection. In almost all cases, this value is S256.
-• country_iso (DK)
+- code_challenge_method: Used for PKCE protection. In almost all cases, this value is S256.
+- country_iso (DK)
 
 1. Redirect the user to the authorization endpoint:
 
@@ -68,8 +68,8 @@ agrees to share his/hers information, the page will be redirected to the supplie
 redirect will happen after a successful login. 
 
 The following will be returned to your redirect URL
-• code: This is the authorization_code.
-• scope: The accepted scopes.
+- code: This is the authorization_code.
+- scope: The accepted scopes.
 
 
 4. Exchange the `code` for an access token. 
@@ -78,12 +78,11 @@ The uri for this call is `{domain}/connect/token`. Below you will find all of th
 for this request. A full list of all available parameters can be found here:
 https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest
 
-• client_id: Identifier of the client
-• grant_type: This value is authorization_code.
-• redirect_uri: Redirection URI to which the response will be sent. Note that this must match
-a uri saved on our server.
-• code: The authorization code received from the authorize request
-• code_verifier: Used for PKCE protection, PKCE proof key.
+- client_id: Identifier of the client
+- grant_type: This value is authorization_code.
+- redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.
+- code: The authorization code received from the authorize request
+- code_verifier: Used for PKCE protection, PKCE proof key.
 
    ```
    POST {domain}/connect/token?
