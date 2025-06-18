@@ -7,7 +7,7 @@ https://oauth.net/2/
 
 Domains:
 --------
-- Test environment: https://test.auth.golfbox.io/
+- Test environment: https://test-auth.golfbox.io/
 - Production environment: https://auth.golfbox.io/
 - Discovery endpoint: `{domain}/.well-known/openid-configuration`
 
