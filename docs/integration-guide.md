@@ -444,10 +444,3 @@ Example JSON payload:
   }
 }
 ```
-
-## Where can I find a complete list of APIs accessible to us?
-
-To access Swagger documentation for your API log in with your username and password:
-
-https://test-dgubasen.api.union.golfbox.io/login.aspx
-https://dgubasen.api.union.golfbox.io/login.aspx
