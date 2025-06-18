@@ -464,3 +464,18 @@ https://test-dgubasen.api.union.golfbox.io/login.aspx
 https://dgubasen.api.union.golfbox.io/login.aspx
 
 This will show the Swagger documentation for the available APIs for your account
+
+## Test data
+
+To test player information API's the following testusers can be used (PW is needed to login as player and get token)
+
+| UnionID  | PW      | Name             |
+|----------|---------|------------------|
+| 1016-100 | msl1234 | Jonas            |
+| 1016-101 | 1234    | Morten           |
+| 1016-102 | 1234    | Ingenium Test    |
+| 1016-105 | gb1234  | Test Medlemstype |
+| 1016-15  | SG1234  | Tanja Lewis      |
+| 1016-41  | gb1234  | Test Testesen    |
+
+To get couses look up "Ocean View Golf Club DGU" as they have the most courses in the test database
