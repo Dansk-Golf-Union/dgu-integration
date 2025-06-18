@@ -471,6 +471,7 @@ To test player information API's the following testusers can be used (PW is need
 
 | UnionID  | PW      | Name             |
 |----------|---------|------------------|
+| 1016-3   | gb1234  | Test  Testesen   |
 | 1016-100 | msl1234 | Jonas            |
 | 1016-101 | 1234    | Morten           |
 | 1016-102 | 1234    | Ingenium Test    |
