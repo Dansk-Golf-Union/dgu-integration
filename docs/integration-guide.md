@@ -449,7 +449,7 @@ Example JSON payload:
 
 Log in with your username and password here:
 
-https://test-dgubasen.api.union.golfbox.io/login.aspx
+https://test-dgubasen.api.union.golfbox.io/login.aspx  
 
 https://dgubasen.api.union.golfbox.io/login.aspx
 
