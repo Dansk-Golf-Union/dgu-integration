@@ -444,3 +444,13 @@ Example JSON payload:
   }
 }
 ```
+
+## How do I see all available APIs?
+
+Log in with your username and password here:
+
+https://test-dgubasen.api.union.golfbox.io/login.aspx
+
+https://dgubasen.api.union.golfbox.io/login.aspx
+
+This will show the Swagger documentation for the available APIs for your account
