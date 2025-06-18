@@ -66,6 +66,16 @@ Token: <OAuth token>
 
 The `username:password` combination must be **Base64 encoded**.
 
+## Token
+
+The token for an API with player information is retrieved through the OAuth 2.0 Authorization Code Flow with PKCE. After the user logs in and grants consent, your application receives an authorization code. This code must then be exchanged for an access token via the token endpoint.
+
+Once retrieved, the access token should be included as a variable in requests to protected API endpoints.
+
+The token grants access based on the scopes requested during authorization (e.g. get_player.information). Be sure to store and transmit the token securely. If needed, refresh the token depending on the lifetime returned in the response.
+
+For more details about OAuth authentication, refer to the [OAuth Guide](./oauth-guide).
+
 ## Error Handling
 
 If a request fails, the API responds with standard HTTP error codes and messages.
