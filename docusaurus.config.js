@@ -55,7 +55,7 @@ const config = {
       items: [
         {
           type: 'doc',
-          docId: 'integration-guide',
+          docId: 'index',
           position: 'left',
           label: 'API Guide',
         },

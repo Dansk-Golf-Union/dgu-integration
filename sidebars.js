@@ -7,18 +7,17 @@
  The sidebars can be generated from the filesystem, or explicitly defined here.
  */
 
-module.exports = {
+ module.exports = {
   tutorialSidebar: [
+    'index', // Velkommen øverst
     {
       type: 'category',
       label: 'Guides',
       collapsed: false,
       items: [
-        'index',
-  	'integration-guide',
-  	'oauth-guide',
+        'integration-guide',
+        'oauth-guide',
       ],
     },
   ],
 };
-
