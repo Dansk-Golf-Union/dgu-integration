@@ -5,7 +5,7 @@
 const config = {
   title: 'Integration Dokumenter',
   tagline: 'Official API Guide for scoring apps',
-  favicon: 'img/golf-favicon.ico',
+  favicon: 'img/golf-favicon.png',
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
