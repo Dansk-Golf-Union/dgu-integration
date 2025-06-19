@@ -14,8 +14,8 @@ const config = {
     v4: true,
   },
 
-  url: 'https://dansk-golf-union.github.io',
-  baseUrl: '/dgu-integration/',
+  url: 'https://integration.danskgolfunion.dk',
+  baseUrl: '/',
 
   organizationName: 'Dansk-Golf-Union',
   projectName: 'dgu-integration',
