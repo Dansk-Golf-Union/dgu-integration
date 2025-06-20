@@ -298,7 +298,13 @@ Here is a list of the member info.
 
 ### How do I look up member info?
 
-You can get info about a specific member in any club by making the following API request.
+This is dependent on your access level and agreement. 
+1. If you represent a given golf club and have been given access to all members without their consent by the club then you can look up members in that (or those) club(s). 
+2. If you are an independent actor you will need player consent to access their information. That is given through the OAuth login and accompanying token - refer to the [OAuth Guide](./oauth-guide). 
+
+Re point 1:
+
+You can get info about a specific member in a club you are certified to access by making the following API request.
 You can refer to the member by
 • lifetimeID
 • unionID
@@ -345,6 +351,64 @@ GET https://<base_url>/<apiset>/Clubs/Golfer?lifetimeID=300191-001?unionID=202-3
 }
 }
 ]
+}
+```
+Re point 2:
+
+You can retrieve information about a specific member who has granted consent by using the token obtained during the authentication process. This is done via the following API.
+
+**Example Request**
+
+```
+GET https://<base_url>/<apiset>/clubs/Golfer_ByAccessToken
+```
+
+**Required Headers**
+
+- `Authorization: Basic <username:password>`
+- `Token: <access_token>`
+
+**Example Response:**
+
+
+```json
+{
+    "ID": "209A4387-F75A-4C32-B4F2-01DF6FD2996D",
+    "LifeTimeID": "010182-008",
+    "FirstName": "Ingenium",
+    "LastName": "Test III",
+    "Gender": "Male",
+    "BirthDate": "19800101T000000",
+    "Email": "nih@dgu.org",
+    "RightToPlay": true,
+    "Status": 1,
+    "PlayerStatus": 1,
+    "Handicap": "520000",
+    "HandicapStatus": 3,
+    "HandicapDato": "20210111T104421",
+    "Memberships": [
+        {
+            "ID": "08D1CC55-2AF1-45C2-8BB4-765A0E1B24D6",
+            "IsHomeClub": true,
+            "LocalRightToPlay": true,
+            "Type": 1,
+            "UnionID": "1016-102",
+            "HomeClub": {
+                "ID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+                "Name": "DGU Test Club A II",
+                "ShortName": "DGUA",
+                "Union": 1,
+                "UnionNumber": 1016
+            },
+            "Club": {
+                "ID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+                "Name": "DGU Test Club A II",
+                "ShortName": "DGUA",
+                "Union": 1,
+                "UnionNumber": 1016
+            }
+        }
+    ]
 }
 ```
 
