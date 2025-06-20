@@ -264,4 +264,7 @@ To test player information API's the following testusers can be used (PW is need
 | 1016-41   | gb1234  | Test Testesen    |                                                         |
 
 
-
+## Support
+--------
+If you have questions or need help, contact Dansk Golf Union:  
+Email: [it@dgu.org](mailto:it@dgu.org)

@@ -1,7 +1,7 @@
 ---
 id: integration-guide
 title: Integration Guide for Scoring Apps
-sidebar_label: Scoring Apps (API)
+sidebar_label: App til scoreindberetning
 ---
 # Introduction
 
@@ -547,3 +547,8 @@ To test player information API's the following testusers can be used (PW is need
 To get couses look up "Ocean View Golf Club DGU" as they have the most courses in the test database
 
 Alternatively "DGU Test Club A II" which also have courses. 
+
+## Support
+--------
+If you have questions or need help, contact Dansk Golf Union:  
+Email: [it@dgu.org](mailto:it@dgu.org)

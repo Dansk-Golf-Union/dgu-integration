@@ -1,11 +1,14 @@
-
-OAuth Guide
-=======================
+---
+id: oauth-guide
+title: Login with OAuth
+sidebar_label: OAuth Guide
+---
+# Introduction
 
 Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:
 https://oauth.net/2/
 
-Domains:
+Domains
 --------
 - Test environment: https://test-auth.golfbox.io/
 - Production environment: https://auth.golfbox.io/
@@ -13,7 +16,7 @@ Domains:
 
 The Discovery endpoint contains information about endpoints, available scopes, key material, and features of the OAuth service.
 
-Before You Start:
+Before You Start
 -----------------
 Before you can use the OAuth service, you need:
 - A Client ID issued by Dansk Golf Union (DGU)
@@ -21,7 +24,7 @@ Before you can use the OAuth service, you need:
 - Scopes (API access levels) you need (this will be supplied by DGU)
 - Grant type: `authorization_code`
 
-OAuth 2.0 Flow:
+OAuth 2.0 Flow
 ---------------
 
 The uri for this call is `{domain}/connect/authorize`. Below you will find all of the required
@@ -122,7 +125,7 @@ Authorization: Basic <username:password>
 Token: <OAuth token>
 ```
 
-Support:
+## Support
 --------
-If you have questions or need help, contact Dansk Golf Union:
-📧 it@dgu.org
+If you have questions or need help, contact Dansk Golf Union:  
+Email: [it@dgu.org](mailto:it@dgu.org)
