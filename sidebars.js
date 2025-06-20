@@ -16,6 +16,7 @@
       collapsed: false,
       items: [
         'integration-guide',
+        'member-lookup',
         'oauth-guide',
       ],
     },

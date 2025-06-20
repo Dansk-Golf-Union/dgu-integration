@@ -128,7 +128,7 @@ This is dependent on your access level and agreement.
 1. If you represent a given golf club and have been given access to all members without their consent by the club then you can look up members in that (or those) club(s). 
 2. If you are an independent actor you will need player consent to access their information. That is given through the OAuth login and accompanying token - refer to the [OAuth Guide](./oauth-guide). 
 
-Re point 1:
+### Re point 1:
 
 You can get info about a specific member in a club you are certified to access by making the following API request.
 You can refer to the member by
@@ -179,7 +179,7 @@ GET https://<base_url>/<apiset>/Clubs/Golfer?lifetimeID=300191-001?unionID=202-3
 ]
 }
 ```
-Re point 2:
+### Re point 2:
 
 You can retrieve information about a specific member who has granted consent by using the token obtained during the authentication process. This is done via the following API.
 
