@@ -519,6 +519,76 @@ Example JSON payload:
 }
 ```
 
+Opdateret API:
+
+```json
+{
+    "ID": "00000000-0000-0000-0000-000000000000",
+    "CreateDateTime": "2025-06-23T14:57:00.202Z",
+    "ExternalID": "string",
+    "ExternalBatchID": "string",
+    "HCP": 0,
+    "CourseHandicap": 0,
+    "PHCP": 0,
+    "Comment": "string",
+    "Course": {
+      "CourseID": "00000000-0000-0000-0000-000000000000",
+      "ExternalID": "string",
+      "Name": "string",
+      "Country": "string",
+      "ClubID": "00000000-0000-0000-0000-000000000000",
+      "ClubName": "string",
+      "TeeID": "00000000-0000-0000-0000-000000000000",
+      "TeeName": "string",
+      "TeePar": 0,
+      "TeeSlope": 0,
+      "TeeRating": 0,
+      "Holes": [
+        {
+          "Number": 0,
+          "Index": 0,
+          "Par": 0,
+          "Length": 0,
+          "SPH": 0
+        }
+      ]
+    },
+    "Marker": {
+      "FullName": "string",
+      "HomeClubName": "string",
+      "LifeTimeID": "string",
+      "UnionID": "string"
+    },
+    "Result": {
+      "Strokes": [
+        0
+      ],
+      "Points": [
+        0
+      ],
+      "TotalStrokes": 0,
+      "TotalPoints": 0,
+      "IsEDS": true,
+      "NetDoubleBogeyGross": 0,
+      "IsQualifying": true
+    },
+    "Round": {
+      "HolesPlayed": 0,
+      "RoundType": 0,
+      "StartTime": "2025-06-23T14:57:00.202Z",
+      "TournamentName": "string",
+      "TournamentRoundNumber": 0
+    },
+    "Player": {
+      "FullName": "string",
+      "HomeClubName": "string",
+      "HomeClubCountry": "string",
+      "LifeTimeID": "string",
+      "UnionID": "string"
+    }
+  }
+```
+
 ## How do I see all available APIs?
 
 Log in with your username and password here:
