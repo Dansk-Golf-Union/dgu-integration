@@ -426,7 +426,7 @@ Here is a list of the scorecard info.
 | CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
 | AccountID             | GUID     | No       | ID of the API account (internal)                                                             |
 | ExternalID            | String   | No       | The external ID of the scorecard                                                             |
-| HCP                   | Decimal  | No       | The exact handicap the round was played off                                                  |
+| HCP                   | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                                                 |
 | PHCP                  | Integer  | No       | The playing handicap the round was played off                                                |
 | Course                | Object   | No       |                                                                                              |
 | └─ CourseID           | GUID     | Yes      | Reference to Course Database ID                                                              |
@@ -436,7 +436,7 @@ Here is a list of the scorecard info.
 | └─ TeeID              | GUID     | Yes      | Reference to Tee Database ID                                                                 |
 | └─ TeeName            | String   | No       | Name of the tee                                                                              |
 | └─ TeePar             | Integer  | No       | Total par of the holes                                                                       |
-| └─ TeeRating          | Integer  | No       | Official course rating value                                                                 |
+| └─ TeeRating          | String  | No       |(Decimal) Official course rating value (format: x * 10000) |
 | └─ TeeSlope           | Decimal  | No       | Official slope rating value                                                                  |
 | └─ Holes              | [List]   | No       |                                                                                              |
 |    └─ Number          | Int      | No       | Official hole number                                                                         |
@@ -523,68 +523,52 @@ Opdateret API:
 
 ```json
 {
-    "ID": "00000000-0000-0000-0000-000000000000",
-    "CreateDateTime": "2025-06-23T14:57:00.202Z",
-    "ExternalID": "string",
+    "ID": "dc419c42-b8be-4540-ab13-d75a83cc7738",
+    "CreateDateTime": "20250623T145700",
+    "ExternalID": "1016-1-24062025-Yellow-18",
     "ExternalBatchID": "string",
-    "HCP": 0,
+    "HCP": 90000,
     "CourseHandicap": 0,
-    "PHCP": 0,
+    "PHCP": 120000,
     "Comment": "string",
     "Course": {
-      "CourseID": "00000000-0000-0000-0000-000000000000",
+      "CourseID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
       "ExternalID": "string",
       "Name": "string",
-      "Country": "string",
-      "ClubID": "00000000-0000-0000-0000-000000000000",
-      "ClubName": "string",
-      "TeeID": "00000000-0000-0000-0000-000000000000",
-      "TeeName": "string",
-      "TeePar": 0,
-      "TeeSlope": 0,
-      "TeeRating": 0,
-      "Holes": [
-        {
-          "Number": 0,
-          "Index": 0,
-          "Par": 0,
-          "Length": 0,
-          "SPH": 0
-        }
-      ]
+      "Country": "DK",
+      "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+      "ClubName": "DGU Test Club A II",
+      "TeeID": "629BDEEC-5D1F-4309-861E-08B072D9509A",
+      "TeeName": "2_Yellow",
+      "TeePar": 72,
+      "TeeSlope": "119",
+      "TeeRating": "718000",
     },
     "Marker": {
-      "FullName": "string",
-      "HomeClubName": "string",
-      "LifeTimeID": "string",
-      "UnionID": "string"
+      "FullName": "Test Test Testesen",
+      "HomeClubName": "DGU Test Club A",
+      "LifeTimeID": "010299-005",
+      "UnionID": "1016-3"
     },
     "Result": {
-      "Strokes": [
-        0
-      ],
-      "Points": [
-        0
-      ],
-      "TotalStrokes": 0,
-      "TotalPoints": 0,
-      "IsEDS": true,
-      "NetDoubleBogeyGross": 0,
-      "IsQualifying": true
-    },
+    "Strokes": [6, 5, 5, 5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+    "TotalStrokes": 90,
+    "NetDoubleBogeyGross": 90,
+    "IsQualifying": true
+  },
     "Round": {
-      "HolesPlayed": 0,
-      "RoundType": 0,
+      "HolesPlayed": 18,
+      "RoundType": 1,
       "StartTime": "2025-06-23T14:57:00.202Z",
       "TournamentName": "string",
       "TournamentRoundNumber": 0
     },
     "Player": {
-      "FullName": "string",
-      "HomeClubName": "string",
-      "HomeClubCountry": "string",
-      "LifeTimeID": "string",
-      "UnionID": "string"
+      "FullName": "Nick Hüttel",
+      "HomeClubName": "DGU Test Club A",
+      "HomeClubCountry": "DK",
+      "LifeTimeID": "160575-026",
+      "UnionID": "1016-1"
     }
   }
 ```
