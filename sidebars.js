@@ -18,7 +18,6 @@
         'integration-guide',
         'member-lookup',
         'oauth-guide',
-        'tabs-test',
       ],
     },
   ],
