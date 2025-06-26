@@ -422,10 +422,9 @@ Here is a list of the scorecard info.
 
 | Name                  | Type     | Nullable | Remarks                                                                                      |
 |-----------------------|----------|----------|----------------------------------------------------------------------------------------------|
-| ID                    | GUID     | No       | Database ID                                                                                  |
+| ID                    | GUID     | No       | Database ID set by scoring app                                                                                 |
 | CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
-| AccountID             | GUID     | No       | ID of the API account (internal)                                                             |
-| ExternalID            | String   | No       | The external ID of the scorecard                                                             |
+| ExternalID            | String   | No       | ExternalID is a unique identifier created by the scoring app to track the scorecard in its own system or database.                                                             |
 | HCP                   | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                                                 |
 | PHCP                  | Integer  | No       | The playing handicap the round was played off                                                |
 | Course                | Object   | No       |                                                                                              |
@@ -452,7 +451,7 @@ Here is a list of the scorecard info.
 | └─ TournamentRoundNumber | Integer | Yes    | Number of tournament round played (if roundtype = 2)                                         |
 | Result                | Object   | No       |                                                                                              |
 | └─ Points             | [List]   | No       | Comma-separated list with stableford points per hole                                         |
-| └─ Strokes            | [List]   | No       | Comma-separated list with strokes per hole (0 if ball was picked up)                         |
+| └─ Strokes            | [List]   | No       | Comma-separated list with strokes per hole (0 = ball picked up, -1 = hole not played)                          |
 | └─ TotalPoints        | Integer  | No       | Total number of stableford points achieved                                                   |
 | └─ TotalStrokes       | Integer  | No       | Total number of strokes used (0 if ball was picked up on any hole)                           |
 | └─ NetDoubleBogeyGross| Integer  | Yes      | Total Adjusted Gross Score (total of net score limited by Net Double Bogey on each hole)     |
@@ -476,7 +475,9 @@ Here is a list of the scorecard info.
 Scorecards must all be sent to the Scorecard Exchange module. You do this by making the following API
 request.
 
-Example JSON payload:
+
+<Tabs>
+  <TabItem value="original" label="Original format">
 
 ```json
 {
@@ -519,7 +520,7 @@ Example JSON payload:
 }
 ```
 
-Opdateret API:
+</TabItem> <TabItem value="updated" label="Updated format">
 
 ```json
 {
@@ -571,7 +572,7 @@ Opdateret API:
       "UnionID": "1016-1"
     }
   }
-```
+</TabItem> </Tabs> ```
 
 ## How do I see all available APIs?
 
