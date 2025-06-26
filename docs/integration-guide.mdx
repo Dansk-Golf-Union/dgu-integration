@@ -480,80 +480,30 @@ request.
 
 
 <Tabs>
-  <TabItem value="original" label="Original format">
+  <TabItem value="Eksempel" label="Eksempel API">
 
 ```json
-{
-  "CreateDateTime": "20190624T000000",
-  "ExternalID": "f53208d1...",
-  "HCP": "340000",
-  "PHCP": 41,
-  "Course": {
-    "ClubID": "...",
-    "Name": "Lübker Sand Course",
-    "Country": "DK",
-    "TeeName": "Gul",
-    "TeePar": 72,
-    "TeeRating": "718000",
-    "TeeSlope": "1380000"
-  },
-  "Round": {
-    "HolesPlayed": 18,
-    "RoundType": 1,
-    "StartTime": "20190623T000000"
-  },
-  "Result": {
-    "Points": [4, 0, 3],
-    "Strokes": [6, 7, 5],
-    "TotalPoints": 48,
-    "TotalStrokes": 101,
-    "NetDoubleBogeyGross": 149,
-    "IsQualifying": true
-  },
-  "Player": {
-    "FullName": "Nikolaj Bille Nielsen",
-    "LifeTimeID": "300191-001",
-    "UnionID": "202-331"
-  },
-  "Marker": {
-    "FullName": "Christian Rygaard",
-    "LifeTimeID": "070692-002",
-    "UnionID": "202-326"
-  }
-}
-```
-
-</TabItem> 
-<TabItem value="updated" label="Updated format">
-
-```json
-{
-    "ID": "dc419c42-b8be-4540-ab13-d75a83cc7738",
-    "CreateDateTime": "20250623T145700",
-    "ExternalID": "1016-1-24062025-Yellow-18",
-    "ExternalBatchID": "string",
-    "HCP": 90000,
-    "CourseHandicap": 0,
-    "PHCP": 120000,
-    "Comment": "string",
+[
+  {
+    "ID": "7a59ca0a-525b-4884-8161-94572c2de3a2",
+    "CreateDateTime": "20250625T130200",
+    "ExternalID": "1016-1-25062025-Yellow-18-9",
+    "HCP": "90000",
+    "PHCP": 12,
     "Course": {
       "CourseID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
-      "ExternalID": "string",
-      "Name": "string",
-      "Country": "DK",
       "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
       "ClubName": "DGU Test Club A II",
       "TeeID": "629BDEEC-5D1F-4309-861E-08B072D9509A",
       "TeeName": "2_Yellow",
       "TeePar": 72,
-      "TeeSlope": "119",
-      "TeeRating": "718000",
+      "TeeSlope": 119,
+      "TeeRating": "718000"
     },
     "Marker": {
-      "FullName": "Test Test Testesen",
-      "HomeClubName": "DGU Test Club A",
-      "LifeTimeID": "010299-005",
-      "UnionID": "1016-3"
+      "FullName": "Jonas Meyer Jensen",
+      "LifeTimeID": "010156-012",
+      "UnionID": "1016-100"
     },
     "Result": {
     "Strokes": [6, 5, 5, 5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5],
@@ -564,18 +514,53 @@ request.
     "Round": {
       "HolesPlayed": 18,
       "RoundType": 1,
-      "StartTime": "2025-06-23T14:57:00.202Z",
-      "TournamentName": "string",
-      "TournamentRoundNumber": 0
+      "StartTime": "20250622T145700"
     },
     "Player": {
       "FullName": "Nick Hüttel",
-      "HomeClubName": "DGU Test Club A",
+      "HomeClubName": "DGU Test Club A II",
       "HomeClubCountry": "DK",
       "LifeTimeID": "160575-026",
       "UnionID": "1016-1"
     }
   }
+]
+```
+
+</TabItem> 
+<TabItem value="Minimum" label="Minimum Api">
+
+```json
+[
+  {
+    "CreateDateTime": "20250616T090200",
+    "ExternalID": "1016-1-16062025-Yellow-18-1",
+    "HCP": 9.0,
+    "PHCP": 12,
+    "Course": {
+      "CourseID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
+      "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+      "TeeID": "629BDEEC-5D1F-4309-861E-08B072D9509A"
+    },
+    "Marker": {
+      "FullName": "Jonas Meyer Jensen",
+      "LifeTimeID": "010156-012",
+      "UnionID": "1016-100"
+    },
+    "Result": {
+    "Strokes": [6, 5, 0, 5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5, 0, 5, 5, -1],
+    "IsQualifying": true
+  },
+    "Round": {
+      "HolesPlayed": 18,
+      "RoundType": 1,
+      "StartTime": "20250616T115700"
+    },
+    "Player": {
+      "UnionID": "1016-1"
+    }
+  }
+]
  ```
  </TabItem> </Tabs>
 
