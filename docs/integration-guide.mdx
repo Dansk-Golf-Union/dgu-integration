@@ -266,6 +266,36 @@ sortTee         - see tip sortTee
 excludeParams   - exclude Course.Tees property from result by including "&excludeParams=tees" parameter
 ```
 
+:::tip TIP SORT
+The courses can be sorted by including the `sort` parameter.
+
+The parameter must follow this format: `PropName:SortDirection,...`
+
+**PropName** can be:  
+`Name`, `NumberOfHoles`, `ActivationDate`, `IsActive`, `IsHcpQualifying`, `IsVisible`, `Version`
+
+**SortDirection** must be `0` or `1`, where `0` is ascending and `1` is descending.
+
+**Examples**:  
+- Sort by highest number of holes: `&sort=NumberOfHoles:1`  
+- Sort by active and then latest activation date: `&sort=IsActive:0,ActivationDate:1`
+:::
+
+:::tip TIP SORTTEE
+The `Course.Tees` properties can be sorted by including the `sortTee` parameter.
+
+The parameter must follow this format: `PropName:SortDirection,...`
+
+**PropName** can be:  
+`Name`, `Gender`, `TotalLength`, `CourseRating`, `SlopeRating`, `IsNineHole`, `LastUpdateDate`
+
+**SortDirection** must be `0` or `1`, where `0` is ascending and `1` is descending.
+
+**Examples**:  
+- Sort by longest tee: `&sortTee=TotalLength:1`  
+- Sort by gender and then highest course rating: `&sortTee=Gender:0,CourseRating:1`
+:::
+
 - **changedsince**  
   Format: `yyyymmddThhmmss`. Returns courses changed after a given date.
 
