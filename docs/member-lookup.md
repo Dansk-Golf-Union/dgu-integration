@@ -56,7 +56,7 @@ The `username:password` combination must be **Base64 encoded**.
 
 The token for an API with player information is retrieved through the OAuth 2.0 Authorization Code Flow with PKCE. After the user logs in and grants consent, your application receives an authorization code. This code must then be exchanged for an access token via the token endpoint.
 
-Once retrieved, the access token should be included as a variable in requests to protected API endpoints.
+Once retrieved, the access token must be used to retrieve informaton regarding the player in question.
 
 The token grants access based on the scopes requested during authorization (e.g. get_player.information). Be sure to store and transmit the token securely. If needed, refresh the token depending on the lifetime returned in the response.
 
@@ -85,8 +85,6 @@ member number has nothing to do with the lifetime ID. If we put together the off
 member number, we have a nationally unique reference for a member. This combination is called the
 ‘union ID’
 
-Member info can be looked up by a lifetime ID or by union ID.
-Member info consist of both personal info and membership info.
 When a member is looked up the complete information including the person and all memberships is returned.
 
 Here is a list of the member info.
@@ -125,10 +123,10 @@ Here is a list of the member info.
 ### How do I look up member info?
 
 This is dependent on your access level and agreement. 
-1. If you represent a given golf club and have been given access to all members without their consent by the club then you can look up members in that (or those) club(s). 
+1. If you represent a given golf club and have been given access to all members without their consent by the club, then you can look up members in that (or those) club(s). 
 2. If you are an independent actor you will need player consent to access their information. That is given through the OAuth login and accompanying token - refer to the [OAuth Guide](./oauth-guide). 
 
-### Re point 1:
+### Re point 1: Access to all club members. 
 
 You can get info about a specific member in a club you are certified to access by making the following API request.
 You can refer to the member by
@@ -179,7 +177,7 @@ GET https://<base_url>/<apiset>/Clubs/Golfer?lifetimeID=300191-001?unionID=202-3
 ]
 }
 ```
-### Re point 2:
+### Re point 2: Player lookup by unique token. 
 
 You can retrieve information about a specific member who has granted consent by using the token obtained during the authentication process. This is done via the following API.
 
