@@ -100,7 +100,7 @@ Here is a list of the member info.
 | BirthDate        | String  | No       | The official birth date (Format: yyyymmddThhnnss)                       |
 | RightToPlay      | Boolean | No       | Indicates if the player has a national playing right                    |
 | Status           | Int     | No       | 1 = Amateur, 2 = Professional                                           |
-| Handicap         | Decimal | No       | Official handicap index                                                 |
+| Handicap         | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)    |
 | HandicapStatus   | Boolean | No       | 1 = Active, (others to be decided depending on new WHS)                 |
 | Memberships      | [List]  |          |                                                                         |
 | └─ ID            | GUID    | No       | Database ID                                                             |
