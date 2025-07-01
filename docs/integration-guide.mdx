@@ -250,6 +250,62 @@ GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Cours
 }
 ```
 
+### Available parameters
+
+The following query parameters can be used when calling the apis above:
+
+- **changedsince**  
+  Format: `yyyymmddThhmmss`. Returns courses changed after a given date.
+
+- **active**  
+  Accepts `0` or `1`. Filters based on `Course.IsActive` (0 = inactive, 1 = active).
+
+- **sort**  
+  Used to sort the courses based on properties of the `Course` object (see details below).
+
+- **sortTee**  
+  Used to sort the individual tees within each course (see details below).
+
+- **excludeParams**  
+  Used to exclude properties from the response, e.g. `?excludeParams=tees` to omit `Course.Tees`.
+
+---
+
+### Sorting with `sort`
+
+Courses can be sorted by adding the `sort` parameter in the following format:
+
+sort=PropName:SortDirection,...
+
+**Valid `PropName` values**:  
+`Name`, `NumberOfHoles`, `ActivationDate`, `IsActive`, `IsHcpQualifying`, `IsVisible`, `Version`
+
+**SortDirection**:  
+`0` = ascending, `1` = descending
+
+**Examples**:
+- Sort by highest number of holes: `&sort=NumberOfHoles:1`  
+- Sort by active courses and then newest activation date: `&sort=IsActive:0,ActivationDate:1`
+
+---
+
+### Sorting with `sortTee`
+
+Tees within each course can be sorted using the `sortTee` parameter in the same format:
+
+sortTee=PropName:SortDirection,...
+
+**Valid `PropName` values**:  
+`Name`, `Gender`, `TotalLength`, `CourseRating`, `SlopeRating`, `IsNineHole`, `LastUpdateDate`
+
+**SortDirection**:  
+`0` = ascending, `1` = descending
+
+**Examples**:
+- Sort by longest tee: `&sortTee=TotalLength:1`  
+- Sort by gender and then highest rating: `&sortTee=Gender:0,CourseRating:1`
+
+
 ## Members
 
 Every person in the database has an ID called LifeTimeID. The format of this number is [xxxxxx-xxx], where
