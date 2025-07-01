@@ -429,10 +429,13 @@ Here is a list of the scorecard info.
 | ID                    | GUID     | No       | Database ID set by scoring app                                                                                 |
 | CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
 | ExternalID            | String   | No       | ExternalID is a unique identifier created by the scoring app to track the scorecard in its own system or database.                                                             |
-| HCP                   | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                                                 |
+| HCP                   | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                          |
+| CourseHandicap        | Integer  | No       | The course handicap the round was played off. (Spillehandicap i DK) - if left out PHCP is used              |
 | PHCP                  | Integer  | No       | The playing handicap the round was played off                                                |
+| Comment               | String   | No       |                                               |
 | Course                | Object   | No       |                                                                                              |
 | └─ CourseID           | GUID     | Yes      | Reference to Course Database ID                                                              |
+| └─ ExternalID         | String   | Yes      | Possible local ID                                                                            |
 | └─ ClubID             | GUID     | Yes      | Reference to Club Database ID                                                                |
 | └─ Name               | String   | No       | Name of the course                                                                           |
 | └─ Country            | String   | No       | ISO2 Country Code                                                                            |
