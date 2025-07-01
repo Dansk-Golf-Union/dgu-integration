@@ -173,7 +173,7 @@ Here is a list of the relevant course info.
 | └─ Name         | String  | No       | Name of tee                                                             |
 | └─ Gender       | Int     | No       | 1 = Female, 2 = Male                                                    |
 | └─ TotalLength  | Int     | No       | Sum of hole lengths                                                     |
-| └─ CourseRating | Decimal | No       | Official course rating value (format: x * 10000)                                           |
+| └─ CourseRating | Decimal | No       | Official course rating value (format: x * 10000)                        |
 | └─ SlopeRating  | Int     | No       | Official slope rating value                                             |
 | └─ IsNineHole   | Boolean | No       | Indicates if this tee is nine holes only                                |
 | └─ Holes        | [List]  | No       |                                                                         |
@@ -374,6 +374,9 @@ A club course can be referenced by a Club ID and then Course ID
 GET https://<base_url>/<apiset>//clubs/7AABAF90-9155-4552-889B-553D5CE75FC6/courses/CA1636A2-4D6E-4078-AD38-D7F8BD23D76C
 ```
 
+To findt the course to use on a given day: 
+1. Ignore Inactive courses 
+2. For a given course (TemplateID) find the version with the latest ActivationDate which is not in the future. 
 
 ### Available parameters
 
