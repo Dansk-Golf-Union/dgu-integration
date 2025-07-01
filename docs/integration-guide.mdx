@@ -254,6 +254,18 @@ GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Cours
 
 The following query parameters can be used when calling the apis above:
 
+```http
+GET {{base_url}}/:ApiSet/Clubs/:ClubID/Courses
+GET {{base_url}}/:ApiSet/Clubs/:ClubID/Courses/CourseID
+
+Available parameters:
+changedsince    - format: yyyymmddTHhmmss, return the courses that changed after a specific date
+active          - accept 0 or 1, return courses based on Course.IsActive property, where 0 = inactive and 1 = active
+sort            - see tip sort
+sortTee         - see tip sortTee
+excludeParams   - exclude Course.Tees property from result by including "&excludeParams=tees" parameter
+```
+
 - **changedsince**  
   Format: `yyyymmddThhmmss`. Returns courses changed after a given date.
 
