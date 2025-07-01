@@ -159,12 +159,16 @@ Here is a list of the relevant course info.
 
 | Name            | Type    | Nullable | Remarks                                                                 |
 |-----------------|---------|----------|-------------------------------------------------------------------------|
-| ID              | GUID    | No       | Database ID                                                             |
+| TemplateID      | GUID    | No       | Database ID for the course                                              |
 | ClubID          | GUID    | No       | Reference to CLUB                                                       |
 | Name            | String  | No       | Official course name                                                    |
 | NumberOfHoles   | Int     | No       | Typically 9 or 18                                                       |
 | ActivationDate  | String  | No       | The date where the course is valid from (Format: yyyymmddThhnnss)       |
 | IsActive        | Boolean | No       | Indicates if a club course is currently active                          |
+| IsHcpQualifying | Boolean | No       | Indicates if a club course is aproved for handicap qualifying           |
+| IsVisible       | Boolean | No       | Indicates if a club course is visible                                   |
+| Version         | Int     | No       | Incremental version number                                              |
+| ID              | GUID    | No       | Version ID                                                              |
 | Tees            | [List]  | No       |                                                                         |
 | └─ Name         | String  | No       | Name of tee                                                             |
 | └─ Gender       | Int     | No       | 1 = Female, 2 = Male                                                    |
@@ -191,64 +195,185 @@ The Club Database ID must be included in the URL.
 **Example Request**
 
 ```
-GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Courses
-```
-
-You can get a single club course by making the following API request.
-A club course can be referenced by a Club ID and Course ID
-
-**Example Request**
-
-```
-GET https://<base_url>/<apiset>/Clubs/ADABD19C-D1EA-45CE-AF2B-8F5407D000A6/Courses
-/75953104-2B6C-42E0-BAE1-963578F9C02B
+GET https://<base_url>/<apiset>/clubs/7AABAF90-9155-4552-889B-553D5CE75FC6/courses?excludeParams=tees
 ```
 
 **Example Response:**
 
 ```json
-{
-"ID": "75953104-2B6C-42E0-BAE1-963578F9C02B",
-"ClubID": "ADABD19C-D1EA-45CE-AF2B-8F5407D000A6",
-"Name": "Lübker Sand Course",
-"NumberOfHoles": 18,
-"ActivationDate": "20190909T000000",
-"IsActive": true,
-"RatedCourse": "DGU - Lübker Forest/Sand Course",
-"IsHcpQualifying": true,
-"IsVisible": true
-"Tees": [
-{
-"ID": "2750ED47-7EAA-4BBA-A6FC-30FCABAE968A",
-"LastUpdateDate": "00010101T000000",
-"Name": "Gul",
-"Gender": 1,
-"TotalLength": 5536,
-"CourseRating": "718000",
-"BogeyRating": "974000",
-"SlopeRating": 138,
-"RatedOn": "00010101T000000",
-"RatedBy": null,
-"IsNineHole": false,
-"NextScheduledRating": "00010101T000000",
-"Holes": [
-{
-"ID": "3F8ED725-D53D-4528-B9FA-9AA95A57DF89",
-"LastUpdateDate": "00010101T000000",
-"Name": "",
-"Number": 1,
-"Par": 5,
-"Index": 4,
-"Length": 497,
-"IdealTime": 20
-}
-...
+[
+    {
+        "TemplateID": "BFBD5556-7C08-4C70-99B3-0B5FFFE29994",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": false,
+        "IsVisible": true,
+        "Version": 1,
+        "Tees": [],
+        "Created": "20250219T132329",
+        "ID": "6E07E6EA-6E6F-4615-95C0-A1837ECF7CEF",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test af ikke rated bane II",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250218T230000",
+        "IsActive": true
+    },
+    {
+        "TemplateID": "BFBD5556-7C08-4C70-99B3-0B5FFFE29994",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": false,
+        "IsVisible": true,
+        "Version": 2,
+        "Tees": [],
+        "Created": "20250219T133447",
+        "ID": "9064AFFA-19EC-4F40-87EB-8BDAC7D7E808",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test af ikke rated bane II",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250218T230000",
+        "IsActive": true
+    },
+    {
+        "TemplateID": "BFBD5556-7C08-4C70-99B3-0B5FFFE29994",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 3,
+        "Tees": [],
+        "Created": "20250219T134055",
+        "ID": "4B1513A1-531F-4AC8-BFE8-7241D0D8700F",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test af ikke rated bane II",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250218T230000",
+        "IsActive": true
+    },
+    {
+        "TemplateID": "BFBD5556-7C08-4C70-99B3-0B5FFFE29994",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": false,
+        "IsVisible": true,
+        "Version": 4,
+        "Tees": [],
+        "Created": "20250219T134440",
+        "ID": "28577417-CF9D-40EB-90E1-2C907A0E9A9F",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test af ikke rated bane II",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250227T230000",
+        "IsActive": false
+    },
+    {
+        "TemplateID": "4CBDD644-F538-412D-B6F4-3F9C77CF3719",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 1,
+        "Tees": [],
+        "Created": "20250331T110505",
+        "ID": "AC786C00-2AA6-4D96-AF45-06C33196C86E",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test par 3 WHS",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250330T220000",
+        "IsActive": false
+    },
+    {
+        "TemplateID": "1677552B-FA15-4F38-AE92-9101F7056A77",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 1,
+        "Tees": [],
+        "Created": "20250331T110601",
+        "ID": "BC487BD9-AE99-4450-89DA-3FBE31E50013",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Test par 3 WHS II",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250330T220000",
+        "IsActive": false
+    },
+    {
+        "TemplateID": "DAD70D9D-7D06-443B-8FF7-D704EC65C557",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 1,
+        "Tees": [],
+        "Created": "20250618T121018",
+        "ID": "91149D2F-ED5C-4BF1-8759-E1ED3C46E70D",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Ny 18 F9",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250531T220000",
+        "IsActive": false
+    },
+    {
+        "TemplateID": "DAD70D9D-7D06-443B-8FF7-D704EC65C557",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 2,
+        "Tees": [],
+        "Created": "20250623T134207",
+        "ID": "E46D45F0-82F2-4AB2-B70C-38B490763FE5",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Ny 18 F9",
+        "NumberOfHoles": 9,
+        "ActivationDate": "20250622T220000",
+        "IsActive": true
+    },
+    {
+        "TemplateID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 1,
+        "Tees": [],
+        "Created": "20250618T121232",
+        "ID": "36D33C80-BED7-4175-BC53-0E2957556305",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Ny 18 hullers WHS bane",
+        "NumberOfHoles": 18,
+        "ActivationDate": "20250531T220000",
+        "IsActive": false
+    },
+    {
+        "TemplateID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
+        "ExternalID": null,
+        "RatedCourse": "",
+        "IsHcpQualifying": true,
+        "IsVisible": true,
+        "Version": 2,
+        "Tees": [],
+        "Created": "20250623T141638",
+        "ID": "4FC90CA7-0175-4EB8-8A5E-290DAC67C77E",
+        "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
+        "Name": "Ny 18 hullers WHS bane",
+        "NumberOfHoles": 18,
+        "ActivationDate": "20250622T220000",
+        "IsActive": true
+    }
 ]
-},
-...
-]
-}
 ```
+
+You can get a single club course by making the following API request.
+A club course can be referenced by a Club ID and then Course ID
+
+**Example Request**
+
+```
+GET https://<base_url>/<apiset>//clubs/7AABAF90-9155-4552-889B-553D5CE75FC6/courses/CA1636A2-4D6E-4078-AD38-D7F8BD23D76C
+```
+
 
 ### Available parameters
 
@@ -296,56 +421,7 @@ The parameter must follow this format: `PropName:SortDirection,...`
 - Sort by gender and then highest course rating: `&sortTee=Gender:0,CourseRating:1`
 :::
 
-- **changedsince**  
-  Format: `yyyymmddThhmmss`. Returns courses changed after a given date.
-
-- **active**  
-  Accepts `0` or `1`. Filters based on `Course.IsActive` (0 = inactive, 1 = active).
-
-- **sort**  
-  Used to sort the courses based on properties of the `Course` object (see details below).
-
-- **sortTee**  
-  Used to sort the individual tees within each course (see details below).
-
-- **excludeParams**  
-  Used to exclude properties from the response, e.g. `?excludeParams=tees` to omit `Course.Tees`.
-
----
-
-#### Sorting with `sort`
-
-Courses can be sorted by adding the `sort` parameter in the following format:
-
-sort=PropName:SortDirection,...
-
-**Valid `PropName` values**:  
-`Name`, `NumberOfHoles`, `ActivationDate`, `IsActive`, `IsHcpQualifying`, `IsVisible`, `Version`
-
-**SortDirection**:  
-`0` = ascending, `1` = descending
-
-**Examples**:
-- Sort by highest number of holes: `&sort=NumberOfHoles:1`  
-- Sort by active courses and then newest activation date: `&sort=IsActive:0,ActivationDate:1`
-
----
-
-#### Sorting with `sortTee`
-
-Tees within each course can be sorted using the `sortTee` parameter in the same format:
-
-sortTee=PropName:SortDirection,...
-
-**Valid `PropName` values**:  
-`Name`, `Gender`, `TotalLength`, `CourseRating`, `SlopeRating`, `IsNineHole`, `LastUpdateDate`
-
-**SortDirection**:  
-`0` = ascending, `1` = descending
-
-**Examples**:
-- Sort by longest tee: `&sortTee=TotalLength:1`  
-- Sort by gender and then highest rating: `&sortTee=Gender:0,CourseRating:1`
+When determining which vesion to use if there are many active
 
 
 ## Members
