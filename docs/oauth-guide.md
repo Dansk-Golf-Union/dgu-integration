@@ -20,9 +20,19 @@ Before You Start
 -----------------
 Before you can use the OAuth service, you need:
 - A Client ID issued by Dansk Golf Union (DGU)
-- Redirect URI(s) registered with DGU. Where you want the users to return to on your site/app once logged in. This could be www.yoursite.com/loggedin or anything that suits your setup.
+- Redirect URI(s) registered with DGU. Where you want the users to return to on your site/app once logged in (see below)
 - Scopes (API access levels) you need (this will be supplied by DGU)
 - Grant type: `authorization_code`
+
+If you are integrating OAuth into a mobile app, you may use a custom URI scheme or App Link / Universal Link as your Redirect URI. This is common in mobile apps where users should be redirected back to the app after login.
+
+Examples:
+
+- Custom URI scheme (Android/iOS): com.yourappname://oauth/callback
+- Universal Link (iOS) or App Link (Android): https://yourdomain.com/oauth/callback
+
+The chosen Redirect URI must be pre-registered with Dansk Golf Union (DGU) and must exactly match the value used in the authorization request.
+
 
 OAuth 2.0 Flow
 ---------------
