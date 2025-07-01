@@ -429,9 +429,9 @@ Here is a list of the scorecard info.
 | ID                    | GUID     | No       | Database ID set by scoring app                                                                                 |
 | CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
 | ExternalID            | String   | No       | ExternalID is a unique identifier created by the scoring app to track the scorecard in its own system or database.                                                             |
-| HCP                   | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                          |
+| HCP                   | String   | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                          |
 | CourseHandicap        | Integer  | No       | The course handicap the round was played off. (Spillehandicap i DK) - if left out PHCP is used              |
-| PHCP                  | Integer  | No       | The playing handicap the round was played off                                                |
+| PHCP                  | Integer  | No       | The playing handicap the round was played off (justeret spillehandicap i DK)                 |
 | Comment               | String   | No       |                                               |
 | Course                | Object   | No       |                                                                                              |
 | └─ CourseID           | GUID     | Yes      | Reference to Course Database ID                                                              |
@@ -493,7 +493,7 @@ request.
     "CreateDateTime": "20250625T130200",
     "ExternalID": "1016-1-25062025-Yellow-18-9",
     "HCP": "90000",
-    "PHCP": 9,
+    "CourseHandicap": 9,
     "Course": {
       "CourseID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
       "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
@@ -540,7 +540,7 @@ request.
     "CreateDateTime": "20250616T090200",
     "ExternalID": "1016-1-16062025-Yellow-18-1",
     "HCP": "90000",
-    "PHCP": 9,
+    "CourseHandicap": 9,
     "Course": {
       "CourseID": "CA1636A2-4D6E-4078-AD38-D7F8BD23D76C",
       "ClubID": "7AABAF90-9155-4552-889B-553D5CE75FC6",
