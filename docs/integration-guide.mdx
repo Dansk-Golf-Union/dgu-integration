@@ -606,8 +606,8 @@ Here is a list of the scorecard info.
 | CreateDateTime        | DateTime | No       | Date and time scorecard was created (Format: yyyymmddThhnnss)                                |
 | ExternalID            | String   | No       | ExternalID is a unique identifier created by the scoring app to track the scorecard in its own system or database.                                                             |
 | HCP                   | String   | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)                          |
-| CourseHandicap        | Integer  | No       | The course handicap the round was played off. (Spillehandicap i DK) - if left out PHCP is used              |
-| PHCP                  | Integer  | No       | The playing handicap the round was played off (justeret spillehandicap i DK)                 |
+| CourseHandicap        | Integer  | No       | The course handicap the round was played off. (Spillehandicap i DK) - must be included        |
+| PHCP                  | Integer  | No       | If Allowances are used (justeret spillehandicap i DK). Just information - not used in calculation                 |
 | Comment               | String   | No       |                                               |
 | Course                | Object   | No       |                                                                                              |
 | └─ CourseID           | GUID     | Yes      | Reference to Course Database ID                                                              |
