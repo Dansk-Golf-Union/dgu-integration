@@ -83,6 +83,7 @@ For more details about OAuth authentication, refer to the [OAuth Guide](./oauth-
 ## Error Handling
 
 If a request fails, the API responds with standard HTTP error codes and messages.
+If syntax is correct, the API does not return an error — even if the data is invalid. Input is not validated.
 
 Example:
 
@@ -822,6 +823,10 @@ request.
 ]
  ```
  </TabItem> </Tabs>
+
+## Error in scorecard
+
+If the submitted data contains errors that prevent a valid handicap calculation, no handicap will be calculated. The API simply relays the data you provide—there is no validation, as ScorecardExchange acts as a pass-through to the WHS server. For example, if you submit an incorrect TeeID (e.g. by altering a digit in an otherwise valid course or club GUID), the API will echo back the data, but the scorecard will not appear in the player's record. It is therefore essential to always submit accurate and valid information.
 
 ## How do I see all available APIs?
 
