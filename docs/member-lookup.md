@@ -260,6 +260,8 @@ To test player information API's the following testusers can be used (PW is need
 | 1016-105  | gb1234  | Test Medlemstype |                                                         |
 | 1016-15   | SG1234  | Tanja Lewis      |                                                         |
 | 1016-41   | gb1234  | Test Testesen    |                                                         |
+| 1016-49   | 1234    | Test without Handicap     |                                                |
+| 1016-50   | 1234    | Test without Handicap WHS begynder   |                                     |
 
 
 ## Support
