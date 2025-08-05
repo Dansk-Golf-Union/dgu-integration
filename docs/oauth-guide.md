@@ -92,6 +92,7 @@ for this request. A full list of all available parameters can be found here:
 https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest
 
 - client_id: Identifier of the client
+- client_secret: Access code for token (only in issued by DGU)
 - grant_type: This value is authorization_code.
 - redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.
 - code: The authorization code received from the authorize request
@@ -100,11 +101,14 @@ https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest
    ```
    POST {domain}/connect/token?
    client_id=YOUR_CLIENT_ID&
+   client_secret=YOUR_CLIENT_SECRET&
    grant_type=authorization_code&
    redirect_uri=YOUR_CALLBACK_URL&
    code=AUTHORIZATION_CODE&
    code_verifier=ORIGINAL_CODE_VERIFIER
    ```
+* If you were not issued with a client_secret leave that out of the API
+
    Content-Type: application/x-www-form-urlencoded
 
 5. Receive a response like:
