@@ -106,7 +106,7 @@ Here is a list of the member info.
 | └─ ID            | GUID    | No       | Database ID                                                             |
 | └─ IsHomeClub     | Boolean | No       | Indicates if the membership is the home club membership                |
 | └─ LocalRightToPlay | Boolean | No   | Indicates if the player has a local playing right                        |
-| └─ Type          | Int     | No       | 1 = Active, 7 = Former                                                  |
+| └─ Type          | Int     | No       |  1 = Full, 2 = Flex, LongDistance = 3, Trial = 4, Passive = 5, JuniorWithoutCoursePermission = 6, 7 = Former                                                 |
 | └─ UnionID       | String  | No       | Combination of the Club Number and the Member Number, e.g. 88-534       |
 | └─ Club          | Object  |          | Club info of the membership club                                        |
 |    └─ ID         | GUID    | No       | Database ID of the club                                                 |
