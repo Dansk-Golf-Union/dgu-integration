@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Login with OAuth | Integration Dokumenter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://integration.danskgolfunion.dk/oauth-guide"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Login with OAuth | Integration Dokumenter"><meta data-rh="true" name="description" content="Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:"><meta data-rh="true" property="og:description" content="Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:"><link data-rh="true" rel="icon" href="/img/golf-favicon.png"><link data-rh="true" rel="canonical" href="https://integration.danskgolfunion.dk/oauth-guide"><link data-rh="true" rel="alternate" href="https://integration.danskgolfunion.dk/oauth-guide" hreflang="en"><link data-rh="true" rel="alternate" href="https://integration.danskgolfunion.dk/oauth-guide" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OAuth Guide","item":"https://integration.danskgolfunion.dk/oauth-guide"}]}</script><link rel="stylesheet" href="/assets/css/styles.1437fbfe.css">
-<script src="/assets/js/runtime~main.3a8e96de.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.495ed21c.js" defer="defer"></script>
 <script src="/assets/js/main.65a685dd.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -87,6 +87,9 @@ for this request. A full list of all available parameters can be found here:
 <p>client_id: Identifier of the client</p>
 </li>
 <li>
+<p>client_secret: Access code for token (only in issued by DGU)</p>
+</li>
+<li>
 <p>grant_type: This value is authorization_code.</p>
 </li>
 <li>
@@ -97,7 +100,12 @@ for this request. A full list of all available parameters can be found here:
 </li>
 <li>
 <p>code_verifier: Used for PKCE protection, PKCE proof key.</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">POST {domain}/connect/token?</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">client_id=YOUR_CLIENT_ID&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">grant_type=authorization_code&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">redirect_uri=YOUR_CALLBACK_URL&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">code=AUTHORIZATION_CODE&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">code_verifier=ORIGINAL_CODE_VERIFIER</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">POST {domain}/connect/token?</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">client_id=YOUR_CLIENT_ID&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">client_secret=YOUR_CLIENT_SECRET&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">grant_type=authorization_code&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">redirect_uri=YOUR_CALLBACK_URL&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">code=AUTHORIZATION_CODE&amp;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">code_verifier=ORIGINAL_CODE_VERIFIER</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<ul>
+<li>
+<p>If you were not issued with a client_secret leave that out of the API</p>
 <p>Content-Type: application/x-www-form-urlencoded</p>
 </li>
 </ul>
