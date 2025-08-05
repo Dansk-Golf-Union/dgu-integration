@@ -101,7 +101,7 @@ Here is a list of the member info.
 | RightToPlay      | Boolean | No       | Indicates if the player has a national playing right                    |
 | Status           | Int     | No       | 1 = Amateur, 2 = Professional                                           |
 | Handicap         | String  | No       | (Decimal) The exact HCP the round was played off (format: x * 10000)    |
-| HandicapStatus   | Boolean | No       | 1 = Active, (others to be decided depending on new WHS)                 |
+| HandicapStatus   | Boolean | No       | 1 = Active (Old EGA hcp), 2=Inactive, 3=Normal (WHS) 4 = Frozen, 5 = FrozenUp, 6 = FrozenDown, 8 = Suspended, 9 = Unallocated.                 |
 | Memberships      | [List]  |          |                                                                         |
 | └─ ID            | GUID    | No       | Database ID                                                             |
 | └─ IsHomeClub     | Boolean | No       | Indicates if the membership is the home club membership                |
