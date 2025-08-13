@@ -42,7 +42,7 @@ parameters for this request. A full list of all available parameters can be foun
 https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 
 - client_id: Identifier of the client.
-- scope: One or more registered scopes. For a player lookup or registering scores the scopes should be get_player.information none union
+- scope: One or more registered scopes. For a player lookup or registering scores the scopes should be: "get_player.information none union"
 - response_type: Determines the authorization processing flow. When using the Authorization Code Flow, this value is code.
 - redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.
 - code_challenge: Used for PKCE protection, see OAuth’s official documentation here:
