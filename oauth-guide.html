@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Login with OAuth | Integration Dokumenter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://integration.danskgolfunion.dk/oauth-guide"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Login with OAuth | Integration Dokumenter"><meta data-rh="true" name="description" content="Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:"><meta data-rh="true" property="og:description" content="Our OAuth service is based on the OAuth 2.0 Industry-standard protocol. You can read more here:"><link data-rh="true" rel="icon" href="/img/golf-favicon.png"><link data-rh="true" rel="canonical" href="https://integration.danskgolfunion.dk/oauth-guide"><link data-rh="true" rel="alternate" href="https://integration.danskgolfunion.dk/oauth-guide" hreflang="en"><link data-rh="true" rel="alternate" href="https://integration.danskgolfunion.dk/oauth-guide" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OAuth Guide","item":"https://integration.danskgolfunion.dk/oauth-guide"}]}</script><link rel="stylesheet" href="/assets/css/styles.1437fbfe.css">
-<script src="/assets/js/runtime~main.495ed21c.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.7bd66a77.js" defer="defer"></script>
 <script src="/assets/js/main.65a685dd.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -42,7 +42,7 @@ parameters for this request. A full list of all available parameters can be foun
 <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest" target="_blank" rel="noopener noreferrer">https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest</a></p>
 <ul>
 <li>client_id: Identifier of the client.</li>
-<li>scope: One or more registered scopes.</li>
+<li>scope: One or more registered scopes. For a player lookup or registering scores the scopes should be get_player.information none union</li>
 <li>response_type: Determines the authorization processing flow. When using the Authorization Code Flow, this value is code.</li>
 <li>redirect_uri: Redirection URI to which the response will be sent. Note that this must match a uri saved on our server.</li>
 <li>code_challenge: Used for PKCE protection, see OAuth’s official documentation here:
